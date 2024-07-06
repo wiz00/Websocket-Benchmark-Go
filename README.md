@@ -1,48 +1,47 @@
-# Go Gorilla Websocket Benchmark Server
+# Go Websocket Benchmark Server (Docker)
 
-<b>If interested in the results, read the [Full Report](https://www.researchgate.net/publication/348993267_An_Analysis_of_the_Performance_of_Websockets_in_Various_Programming_Languages_and_Libraries) 
-or the shortened [Blog Post](https://matttomasetti.medium.com/websocket-performance-comparison-10dc89367055) 
-about this experiment.</b>
+Based on [Go (Gorilla)](https://github.com/matttomasetti/Go-Gorilla_Websocket-Benchmark-Server) repository,
+[Websocket Performance Comparison](https://matttomasetti.medium.com/websocket-performance-comparison-10dc89367055) article
+and it's comments, implemented potentially faster Go Websocket server to be fairly compared with other technologies (languages).
 
-This is a Go (Gorilla) variation of websocket servers designed to 
-benchmark the performance of both reliability and speed of various 
-websocket implementations.
+*GWS* had been chosen from [this comparison](https://github.com/lxzan/go-websocket-testing).
 
-The other server variations can be found at the links below
- 
-### Benchmarking Client
-The benchmarking client can be found [here](https://github.com/matttomasetti/NodeJS_Websocket-Benchmark-Client)
+~~It was my first Go experience, I have no idea what I'd done there, but it worked~~
 
-## Quick Set-Up
-```
-docker run -p 8080:8080 mtomasetti/go-gorilla_websocket-benchmark-server
-```
-That's it! The websocket server will automatically start on **port 8080**
 
-## Dockerfile Set-Up
-```
-docker build . -t websocket_benchmark/go
-docker run -p 8080:8080 websocket_benchmark/go
+## Benchmarking client
+
+The benchmarking client can be found [here](https://github.com/wiz00/Websocket-Benchmark-Client)
+
+## Install & run
+
+```bash
+docker build . -f Dockerfile.GWS -t websocket_benchmark/go-gws && \
+docker run --rm -p 8080:8080 websocket_benchmark/go-gws
 ```
 
-## Manual Set-up
-#### Requirements
-In order for this websocket server to compile and run, it requires:
-* \>= Go 1.15
+or
 
-It is recommended that you use the ready-made environment via the
-included Dockerfile
-
-#### Install & Run
-```
-go get github.com/gorilla/websocket
-go build go-gorilla_websocket-benchmark-server.go
-./go-gorilla_websocket-benchmark-server
+```bash
+./start.sh
 ```
 
-## Links
+## Other websocket servers
 
-#### GitHub
+* [Node](https://github.com/wiz00/Websocket-Benchmark-Node)
+* [Python](https://github.com/wiz00/Websocket-Benchmark-Python)
+* [PHP](https://github.com/wiz00/Websocket-Benchmark-PHP) ❤️
+* [Go](https://github.com/wiz00/Websocket-Benchmark-Go) (current)
+
+## Original comparison
+
+* [Websocket Performance Comparison](https://matttomasetti.medium.com/websocket-performance-comparison-10dc89367055)
+* [Technical Report](https://www.researchgate.net/publication/348993267_An_Analysis_of_the_Performance_of_Websockets_in_Various_Programming_Languages_and_Libraries)
+
+## Original repositories
+
+### GitHub
+
 * [Benchmarking Client (NodeJS)](https://github.com/matttomasetti/NodeJS_Websocket-Benchmark-Client)
 * [C (LWS)](https://github.com/matttomasetti/C-LWS_Websocket-Benchmark-Server)
 * [C++ (uWS)](https://github.com/matttomasetti/CPP-uWS_Websocket-Benchmark-Server)
@@ -55,17 +54,3 @@ go build go-gorilla_websocket-benchmark-server.go
 * [Python (Autobahn)](https://github.com/matttomasetti/Python-Autobahn_Websocket-Benchmark-Server)
 * [Python (Aiohttp)](https://github.com/matttomasetti/Python-Aiohttp_Websocket-Benchmark-Server)
 * [Rust (WebSocket)](https://github.com/matttomasetti/Rust-WebSocket_Websocket-Benchmark-Server)
-
-#### Docker Hub
-* [Benchmarking Client (NodeJS)](https://hub.docker.com/r/mtomasetti/nodejs_websocket-benchmark-client)
-* [C (LWS)](https://hub.docker.com/r/mtomasetti/c-lws_websocket-benchmark-server)
-* [C++ (uWS)](https://hub.docker.com/r/mtomasetti/cpp-uws_websocket-benchmark-server)
-* [C# (Fleck)](https://hub.docker.com/repository/docker/mtomasetti/cs-fleck_websocket-benchmark-server)
-* [Go (Gorilla)](https://hub.docker.com/r/mtomasetti/go-gorilla_websocket-benchmark-server)
-* [Java (WebSocket)](https://hub.docker.com/r/mtomasetti/java-websocket_websocket-benchmark-server)
-* [NodeJS (uWS)](https://hub.docker.com/r/mtomasetti/nodejs-uws_websocket-benchmark-server)
-* [PHP (Ratchet)](https://hub.docker.com/r/mtomasetti/php-ratchet_websocket-benchmark-server)
-* [Python (Websockets)](https://hub.docker.com/r/mtomasetti/python-websockets_websocket-benchmark-server)
-* [Python (Autobahn)](https://hub.docker.com/repository/docker/mtomasetti/python-autobahn_websocket-benchmark-server)
-* [Python (Aiohttp)](https://hub.docker.com/repository/docker/mtomasetti/python-aiohttp_websocket-benchmark-server)
-* [Rust (WebSocket)](https://hub.docker.com/r/mtomasetti/rust-websocket_websocket-benchmark-server)
