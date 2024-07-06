@@ -38,9 +38,7 @@ or
 * [Websocket Performance Comparison](https://matttomasetti.medium.com/websocket-performance-comparison-10dc89367055)
 * [Technical Report](https://www.researchgate.net/publication/348993267_An_Analysis_of_the_Performance_of_Websockets_in_Various_Programming_Languages_and_Libraries)
 
-## Original repositories
-
-### GitHub
+## Original GitHub repositories
 
 * [Benchmarking Client (NodeJS)](https://github.com/matttomasetti/NodeJS_Websocket-Benchmark-Client)
 * [C (LWS)](https://github.com/matttomasetti/C-LWS_Websocket-Benchmark-Server)
