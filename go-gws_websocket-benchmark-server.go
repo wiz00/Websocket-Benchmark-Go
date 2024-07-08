@@ -66,32 +66,6 @@ func serve(w http.ResponseWriter, r *http.Request) {
 	go func() {
 		c.ReadLoop()
 	}()
-
-	//keep connection open
-	// defer c.Close()
-
-	//continuously listen for incoming messages
-	// for {
-
-	// 	// read in incoming messages
-	// 	mt, message, err := c.ReadMessage()
-	// 	_ = mt
-	// 	if errorCheck(err) {
-	// 		return
-	// 	}
-
-	// 	log.Printf("recv: %s", message)
-
-	// 	// decode incoming message into a struct
-	// 	var json_data event_data
-	// 	err = json.Unmarshal(message, &json_data)
-	// 	if errorCheck(err) {
-	// 		return
-	// 	}
-
-	// 	// notify client with event for message with count "c"
-	// 	notify(c, json_data.C)
-	// }
 }
 
 // Checks for errors after an operation
@@ -154,7 +128,4 @@ func (c *Handler) OnMessage(socket *gws.Conn, message *gws.Message) {
 
 	// notify client with event for message with count "c"
 	notify(socket, json_data.C)
-
-	// socket.WriteMessage(message.Opcode, message.Bytes())
-	// _ = message.Close()
 }
