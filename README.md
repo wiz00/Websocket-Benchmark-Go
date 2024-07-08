@@ -26,6 +26,28 @@ or
 ./start.sh
 ```
 
+## Comparison of Go websocket servers performance
+
+Tested on a Hetzner Cloud server instance CPX11 (2 vCPU x86 AMD EPYC™️ 7002 series, 2 GB RAM) scoring 976 points in [Geekbench 5 Single-Core test](https://browser.geekbench.com/v5/cpu/22659970) (tests run using Docker containers).
+
+![Go Gorilla vs GWS on Docker on Hetzner Cloud VPS CPX11](assets/Hetzner_Cloud_CPX11_x86_Go.png)
+
+This particular test was run on localhost using this [benchmarking client](https://github.com/wiz00/Websocket-Benchmark-Client) and these settings:
+
+| Parameter | Value |
+| --- | --- |
+| Number of test repetitions | 20 |
+| Number of rounds per repetition | 30 |
+| Connections to be added per round | 100 |
+| Requests each connection makes per round | 100 |
+
+The test started with 100 connections sending 10k requests in total and ended up with 3000 connections sending 300k requests in total per round. This was repeated 20 times.
+
+In the results, there is not much of a difference.
+I expected to see better results for GWS (or worse for Gorilla) according to the mentioned [comparison](https://github.com/lxzan/go-websocket-testing).
+
+Anyway, GWS was chosen to proceed to the main benchmark and comparison.
+
 ## Other websocket servers
 
 * [Node](https://github.com/wiz00/Websocket-Benchmark-Node)
