@@ -1,5 +1,3 @@
-// +build ignore
-
 package main
 
 import (
@@ -17,6 +15,8 @@ type event_data struct {
 	C  int32 `json:"c"`
 	Ts int64 `json:"ts"`
 }
+
+var connectionsCounter int = 0
 
 // Starts a http listening service on the given port
 // and passes any requests to the entrypoint to the "serve" callback function
@@ -48,6 +48,9 @@ func serve(w http.ResponseWriter, r *http.Request) {
 	//keep conneciton open
 	defer c.Close()
 
+	connectionsCounter++
+	log.Printf("New connection (%d)", connectionsCounter)
+
 	// send newly connected client initial timestamp
 	err = notify(c, 0)
 	if errorCheck(err) {
@@ -64,7 +67,7 @@ func serve(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		log.Printf("recv: %s", message)
+		// log.Printf("recv: %s", message)
 
 		// decode incoming message into a struct
 		var json_data event_data

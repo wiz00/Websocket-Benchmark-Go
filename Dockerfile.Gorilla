@@ -1,0 +1,25 @@
+FROM golang:1.20-alpine
+
+WORKDIR /home/websocket
+
+# Copy go.mod and go.sum if they exist
+# COPY go.mod go.sum ./
+
+# If go.mod and go.sum do not exist, initialize a new module
+RUN [ -f go.mod ] || go mod init github.com/wiz00/Websocket-Benchmark-Go
+
+# Include dependencies
+RUN go get github.com/gorilla/websocket
+
+# Copy main file
+COPY ./go-gorilla_websocket-benchmark-server.go ./main.go
+
+# Find all dependencies
+RUN go mod tidy
+
+# Build
+RUN CGO_ENABLED=0 GOOS=linux go build -o ./ws-server ./main.go
+
+EXPOSE 8080
+
+CMD ["./ws-server"]
